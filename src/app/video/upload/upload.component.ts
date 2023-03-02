@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app'
 import { last, switchMap } from 'rxjs';
+import { ClipService } from 'src/app/services/clip.service';
 
 @Component({
   selector: 'app-upload',
@@ -37,7 +38,8 @@ export class UploadComponent implements OnInit {
 
   constructor(
     private storage: AngularFireStorage,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private clipsService: ClipService
   ) { 
     auth.user.subscribe(user => this.user = user)
   }
@@ -46,9 +48,11 @@ export class UploadComponent implements OnInit {
   }
 
   storeFile($event: Event) {
-    this.isDragover= false
-
-    this.file = ($event as DragEvent).dataTransfer?.files.item(0) ?? null
+    this.isDragover = false;
+    this.file =
+    ($event as DragEvent).dataTransfer ?
+         ($event as DragEvent).dataTransfer?.files.item(0) ?? null :
+         ($event.target as HTMLInputElement).files?.item(0) ?? null
 
     if(!this.file || this.file.type !== "video/mp4") {
       return 
@@ -61,6 +65,8 @@ export class UploadComponent implements OnInit {
     this.nextStep = true
   }
   uploadFile(){
+    this.uploadForm.disable()
+
     this.showAlert= true
     this.alertColor = "blue"
     this.alertMsg= " Please Wait! File will be uploaded"
@@ -84,12 +90,13 @@ export class UploadComponent implements OnInit {
     ).subscribe({
       next: (url) =>{
         const clip =  {
-          uid: this.user?.uid,
-          displayName: this.user?.displayName,
+          uid: this.user?.uid as string,
+          displayName: this.user?.displayName as string,
           title: this.title.value,
           fileName:`${clipFileName}.mp4`,
           url
         }
+this.clipsService.createClip(clip)
 
         console.log(clip)
 
@@ -99,6 +106,8 @@ export class UploadComponent implements OnInit {
 
       },
       error: (error) => { 
+        this.uploadForm.enable()
+
         this.alertColor = "red"
         this.alertMsg = " Upload failed! Please try again later"
         this.inSubmission = false
