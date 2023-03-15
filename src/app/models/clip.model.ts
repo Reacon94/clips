@@ -1,16 +1,13 @@
-<<<<<<< HEAD
+import firebase from "firebase/compat/app"
+
 export default interface Iclip {
+    docID?: string;
     uid: string;
-    displayName:string;
-    title:string;
-    fileName:string;
-    url:string;
-=======
-export default interface Iclip {
-    uid: string;
-    displayName:string;
-    title:string;
-    fileName:string;
-    url:string;
->>>>>>> 59d1898bcd585441066ecbf3f55d8751efbb770f
+    displayName: string;
+    title: string;
+    fileName: string;
+    url: string;
+    timestamp: firebase.firestore.FieldValue;
+    screenshotURL: string;
+    screenshotFileName: string;
 }
