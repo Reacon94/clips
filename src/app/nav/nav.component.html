@@ -13,31 +13,31 @@
         <ul class="flex flex-row mt-1">
           <!-- Navigation Links -->
           <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks">
-            <a class="px-2" href="#" (click)="openModal($event)"  
+            <a class="px-2 hover:text-indigo-600 " href="#" (click)="openModal($event)"  
             >Login / Register</a>
           </li>
           <ng-template #authLinks>
             <li>
-              <a class="px-2" routerLink="/manage"
+              <a class="px-2 hover:text-indigo-600 " routerLink="/manage"
               routerLinkActive="text-indigo-400"
               [routerLinkActiveOptions]="{ exact: true }"
               [queryParams]="{ sort: '1' }">
               Manage</a>
             </li>
             <li>
-              <a class="px-2" routerLink="/upload"
+              <a class="px-2 hover:text-indigo-600" routerLink="/upload"
               routerLinkActive="text-indigo-400"
               >Upload</a>
             </li>
             <li>
-              <a class="px-2" (click)="auth.logout($event)">
+              <a class="px-2 hover:text-indigo-600 cursor-pointer " (click)="auth.logout($event)">
                 LogOut
               </a>
             </li>
           </ng-template>
          
           <li rounterLinkActive="text-indigo-400">
-            <a class="px-2" routerLink="/about"
+            <a class="px-2 hover:text-indigo-600" routerLink="/about"
             routerLinkActive="text-indigo-400"
             [routerLinkActiveOptions]="{ exact: true }">
             About</a>
@@ -48,38 +48,38 @@
 
       <!-- mobile Version-->
 
-      <div class="space-y-2" id="mobile" (click)="mobile = !mobile" >
+      <div class="space-y-2 cursor-pointer" id="mobile" (click)="mobile = !mobile" >
         <div class="w-8 h-0.5 bg-gray-600"></div>
         <div class="w-8 h-0.5 bg-gray-600"></div>
         <div class="w-8 h-0.5 bg-gray-600"></div>
 
-        <div class="bg-gray-400 absolute right-2 z-50" *ngIf="mobile">
+        <div class="bg-gray-600 w-44 flex justify-center absolute right-2 z-50 opacity-80" *ngIf="mobile">
           <!-- Primary Navigation -->
         <ul class="flex flex-col mt-1">
           <!-- Navigation Links -->
           <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks">
-            <a class="px-2 hover:text-indigo-600" href="#" (click)="openModal($event)"  
+            <a class="px-2 py-4 hover:text-indigo-600" href="#" (click)="openModal($event)"  
             >Login / Register</a>
           </li>
           <ng-template #authLinks>
             <li>
-              <a class="px-2 hover:text-indigo-600" routerLink="/manage"
+              <a class="px-2 py-4 hover:text-indigo-600" routerLink="/manage"
               [queryParams]="{ sort: '1' }">
               Manage</a>
             </li>
             <li>
-              <a class="px-2 hover:text-indigo-600" routerLink="/upload"
+              <a class="px-2 py-4 hover:text-indigo-600" routerLink="/upload"
               >Upload</a>
             </li>
             <li>
-              <a class="px-2 hover:text-indigo-600" (click)="auth.logout($event)">
+              <a class="px-2 py-4 hover:text-indigo-600 cursor-pointer" (click)="auth.logout($event)">
                 LogOut
               </a>
             </li>
           </ng-template>
          
           <li>
-            <a class="px-2 hover:text-indigo-600" routerLink="/about">
+            <a class="px-2 py-4 hover:text-indigo-600" routerLink="/about">
             About</a>
           </li>
         </ul>
