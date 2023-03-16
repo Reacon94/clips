@@ -9,8 +9,10 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+    mobile = false
+    close = false
 
-  constructor(
+    constructor(
     public modal: ModalService,
     public auth: AuthService,
     
@@ -18,8 +20,15 @@ export class NavComponent implements OnInit {
     
      }
 
+
+  
+
   ngOnInit(): void {
+  
+    
   }
+
+
   openModal($event: Event){
     $event.preventDefault()
 

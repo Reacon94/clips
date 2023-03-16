@@ -1,0 +1,15 @@
+@media (max-width: 400px) {
+    #full {
+        display: none;
+    }
+    #mobile {
+        display: block;
+    }
+}
+
+@media (min-width: 400px) {
+    #mobile {
+        display: none;
+
+    }
+}
