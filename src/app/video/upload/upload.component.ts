@@ -30,6 +30,7 @@ export class UploadComponent implements OnDestroy {
   screenshots: string[] = []
   selectedScreenshot = ""
   screenshotTask?: AngularFireUploadTask
+  fileName ="";
 
   title = new FormControl("", {
     validators: [
@@ -76,6 +77,8 @@ export class UploadComponent implements OnDestroy {
    this.screenshots = await this.ffmpegService.getScreenshots(this.file)
 
    this.selectedScreenshot = this.screenshots[0]
+
+   
 
     this.title.setValue(
       this.file.name
