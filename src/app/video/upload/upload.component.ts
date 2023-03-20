@@ -35,13 +35,15 @@ export class UploadComponent implements OnDestroy,OnInit {
   removeAlert = false
 
   ngOnInit() {
-    if( window.screen.width <= 450) {
+    if( window.screen.width <= 450 && !window.navigator.userAgent.includes("Firefox")) {
 
       this.browserAlert = false
     }
     else {
       this.browserAlert = true
     }
+
+    
     
   }
 
