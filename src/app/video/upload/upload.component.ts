@@ -32,18 +32,17 @@ export class UploadComponent implements OnDestroy,OnInit {
   screenshotTask?: AngularFireUploadTask
   fileName ="";
   browserAlert = false
+  removeAlert = false
 
   ngOnInit() {
-    if(!navigator.userAgent.includes("Mozilla") ) {
+    if( window.screen.width <= 450) {
 
       this.browserAlert = false
     }
     else {
       this.browserAlert = true
     }
-   
-
-   
+    
   }
 
 
