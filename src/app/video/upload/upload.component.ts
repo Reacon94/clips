@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { v4 as uuid } from 'uuid';
@@ -15,7 +15,7 @@ import { combineLatest, forkJoin } from 'rxjs';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class UploadComponent implements OnDestroy {
+export class UploadComponent implements OnDestroy,OnInit {
   isDragover= false
   file: File | null = null
   nextStep = false
@@ -31,6 +31,21 @@ export class UploadComponent implements OnDestroy {
   selectedScreenshot = ""
   screenshotTask?: AngularFireUploadTask
   fileName ="";
+  browserAlert = false
+
+  ngOnInit() {
+    if(!navigator.userAgent.includes("Mozilla") ) {
+
+      this.browserAlert = false
+    }
+    else {
+      this.browserAlert = true
+    }
+   
+
+   
+  }
+
 
   title = new FormControl("", {
     validators: [
