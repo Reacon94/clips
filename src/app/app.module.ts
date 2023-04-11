@@ -33,7 +33,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    VideoModule,
     AppRoutingModule,
     AngularFireStorageModule,
     ReactiveFormsModule,
