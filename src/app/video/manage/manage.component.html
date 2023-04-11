@@ -1,11 +1,11 @@
   <!-- Top Bar -->
-  <section class="container mx-auto my-8 bg-secondary p-6">
-    <div class="rounded relative flex flex-col sm:flex-row justify-between">
-      <a href="#" class="bg-indigo-400 text-white sm:py-4 px-10 sm:text-xl text-center">Upload Videos</a>
+  <section class="flex justify-center sm:block container mx-auto my-8 bg-secondary p-6">
+    <div class="w-52 sm:w-auto rounded relative flex flex-col sm:flex-row justify-between">
+      <a routerLink="/upload" class="bg-indigo-400 text-white sm:py-4 sm:px-10 sm:text-xl text-center mt-2">Upload Videos</a>
       
       <!-- Sort Videos -->
       <select (change)="sort($event)"
-      class="text-black px-8 sm:text-xl outline-none appearance-none text-center mt-2">
+      class="text-black sm:px-8 sm:text-xl outline-none appearance-none text-center mt-2 ">
         <option value="1" [selected]="videoOrder == '1'" >Recent Uploads</option>
         <option value="2" [selected]="videoOrder == '2'"> Oldest Uploads</option>
       </select>

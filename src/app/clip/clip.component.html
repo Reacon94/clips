@@ -1,5 +1,5 @@
   <!-- Main Content -->
-  <section class="container mx-auto my-8 bg-secondary p-6">
+  <section  class="container mx-auto my-8 bg-secondary p-6">
     <div class="rounded relative flex flex-col">
       <!-- Title and Uploader -->
       <h1 class="font-bold mb-2 text-3xl">
@@ -11,14 +11,68 @@
       </div>
 
       <!-- Video Editor -->
-      <div class="relative aspect-video ">
+      <div class="relative flex justify-center">
         <!-- Video Player -->
         <video controls #videoPlayer crossorigin
-          class="video-js vjs-theme-forest mx-auto w-full">
+          class="video-js vjs-big-play-centered vjs-show-big-play-button-on-pause">
         </video>
       </div>
     </div>
   </section>
+
+  <!-- comment list -->
+  <div class="flex justify-center">
+  <button *ngIf="this.commentButton == false" (click)="this.commentButton = !this.commentButton" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide hover:bg-gray-100 mb-2">Show Comments</button>
+  <button *ngIf="this.commentButton == true" (click)="this.commentButton = !this.commentButton" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide hover:bg-gray-100 mb-2">Hide Comments</button>
+  </div>
+  <div *ngFor="let comment of allComments"  class="flex shadow-lg mb-4 w-6/12 ">
+    <div *ngIf="this.route.snapshot.url[1].path == comment.path && this.commentButton == true">
+    <div class="w-screen rounded-lg bg-secondary">
+      <div class="flex flex-row justify-between items-center">
+      <h2 class="px-4 pt-3 pb-2 text-white text-lg">{{comment.Author}},{{comment.timestamp | fbTimestamp}}</h2>
+      <div class="sm:mr-10">
+        <button (click)="updateButton(comment)">
+       <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 96 960 960" width="48">
+        <path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/>
+        </svg>
+      </button>
+      <button (click)="deleteComment(comment.id)">
+       <svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 96 960 960" width="48">
+        <path d="M261 936q-24.75 0-42.375-17.625T201 876V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438V306ZM367 790h60V391h-60v399Zm166 0h60V391h-60v399ZM261 306v570-570Z"/>
+       </svg>
+      </button>
+    </div>
+     </div>
+       <div class="flex flex-wrap ml-3 w-11/12">
+          <span class="text-black bg-gray-100 rounded border border-gray-400 w-full h-20  font-medium mb-2 truncate" >{{comment.comment}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- write a comment-->
+
+  
+<div #writecomment class="flex mx-auto items-center justify-center shadow-lg mb-4" *ngIf="this.commentButton == true">
+  <form class="w-screen rounded-lg px-4 pt-2 bg-secondary" [formGroup]="form" (ngSubmit)="postComment()">
+     <div class="flex flex-wrap -mx-3 mb-6">
+        <h2 class="px-4 pt-3 pb-2 text-white text-lg">Add a new comment</h2>
+        <div class="w-full md:w-full px-3 mb-2 mt-2">
+           <input type="text" formControlName="comment" class=" text-black bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" placeholder='Type Your Comment' required>
+        </div>
+        <div class="w-full flex sm:items-start md:w-full px-3">   
+           <div class="flex flex-col  sm:flex-row sm: justify-between w-full  ">
+              <button *ngIf="update == true" type='submit' (click) ="this.update = !this.update; updateComment(); this.form.reset()" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide hover:bg-gray-100 mb-2 h-12 mt-6">Update Comment</button>
+              <button type='submit' class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide hover:bg-gray-100 h-12 mt-6">Post Comment</button>
+           </div>
+        </div>
+        </div>
+     </form>
+  </div>
+
+
+
 
   <!-- More Clips -->
   <div class="container mx-auto my-8">

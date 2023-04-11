@@ -70,7 +70,9 @@ export class AuthService {
     }
    
 
-    await this.auth.signOut()
+    await this.auth.signOut().then(() => {
+      this.router.navigateByUrl("/")
+    })
     
     //Forced Redirection
     if(this.redirect) {
