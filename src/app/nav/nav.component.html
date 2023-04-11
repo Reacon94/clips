@@ -45,7 +45,7 @@
         <div class="w-8 h-0.5 bg-gray-600"></div>
         <div class="w-8 h-0.5 bg-gray-600"></div>
 
-        <div class="bg-gray-600 w-44 flex justify-center absolute right-2 z-50 opacity-80" *ngIf="mobile">
+        <div class="bg-gray-600 w-full flex justify-center absolute right-2 opacity-90 z-50 py-4" *ngIf="mobile">
           <!-- Primary Navigation -->
         <ul class="flex flex-col mt-1">
           <!-- Navigation Links -->
@@ -55,16 +55,16 @@
           </li>
           <ng-template #authLinks>
             <li>
-              <a class="px-2 my-4 hover:text-indigo-600" routerLink="/manage"
+              <a class="px-2 my-12 hover:text-indigo-600" routerLink="/manage"
               [queryParams]="{ sort: '1' }">
               Manage</a>
             </li>
             <li>
-              <a class="px-2 my-4 hover:text-indigo-600" routerLink="/upload"
+              <a class="px-2 my-12 hover:text-indigo-600" routerLink="/upload"
               >Upload</a>
             </li>
             <li>
-              <a class="px-2 my-4 hover:text-indigo-600 cursor-pointer" (click)="auth.logout($event)">
+              <a class="px-2 my-12 hover:text-indigo-600 cursor-pointer" (click)="auth.logout($event)">
                 LogOut
               </a>
             </li>
