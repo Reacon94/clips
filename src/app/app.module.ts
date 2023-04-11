@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { VideoModule } from './video/video.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {UserModule} from "./user/user.module";
@@ -33,9 +33,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    VideoModule,
     AppRoutingModule,
     AngularFireStorageModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
