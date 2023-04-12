@@ -45,9 +45,9 @@
         <div class="w-8 h-0.5 bg-gray-600"></div>
         <div class="w-8 h-0.5 bg-gray-600"></div>
 
-        <div class="bg-gray-600 w-full flex justify-center absolute right-2 opacity-90 z-50 py-4" *ngIf="mobile">
+        <div class="bg-[#161d31] text-3xl w-full h-screen flex justify-center absolute top-[92px] right-0 z-50 py-4 " *ngIf="mobile">
           <!-- Primary Navigation -->
-        <ul class="flex flex-col mt-1">
+        <ul class="flex flex-col mt-1 justify-evenly -mt-[135px] ">
           <!-- Navigation Links -->
           <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks">
             <a class="px-2 my-4 hover:text-indigo-600" href="#" (click)="openModal($event)"  
